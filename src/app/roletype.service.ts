@@ -1,0 +1,43 @@
+import { Injectable } from '@angular/core';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
+@Injectable({
+  providedIn: 'root'
+})
+export class RoletypeService {
+
+  constructor(private httpClient: HttpClient) {
+
+  }
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
+
+  public getAll(): Observable<any> {
+    return this.httpClient.get("http://localhost:8080/api/roleType/listeroleType");
+  }
+
+
+  public save(utilisateur): Observable<any> {
+    return this.httpClient.post("http://localhost:8080/api/roleType/save", utilisateur, httpOptions);
+  }
+
+  public update(utilisateur): Observable<any> {
+    return this.httpClient.post("http://localhost:8080/api/roleType/update", utilisateur, httpOptions);
+  }
+
+
+
+  delete(competence): Observable<any> {
+
+    return this.httpClient.delete("http://localhost:8080/api/roleType/" + competence.id);
+  }
+
+}

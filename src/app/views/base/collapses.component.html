@@ -1,0 +1,114 @@
+<div class="card-header">
+    <label style="font-weight:bold;color:#546E7A;">Failure</label>
+  </div>
+  <div class="card-body">
+  
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <td><h6 style="color:rgba(3, 3, 3, 0.918);" class="text-center"><b>exception</b></h6></td>
+          <td><h6 style="color:rgba(3, 3, 3, 0.918);" class="text-center"><b>msisdn</b></h6></td>
+          <td><h6 style="color:rgba(3, 3, 3, 0.918);" class="text-right"><b>msisdn</b></h6></td>
+          <td><h6 style="color:rgba(3, 3, 3, 0.918);" class="text-right"><b>sprin_result</b></h6></td>
+  
+  
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of ListUtilistaeur  | paginate: { itemsPerPage:10, currentPage: pt, id: 'pt' }">
+          <td class="text-center">{{user.exception}}</td>
+          <td class="text-center">{{user.msisdn}}</td>
+          <td class="text-right">{{user.spin_number}}</td>
+          <td class="text-right">{{user.sprin_result}}</td>
+          <td align="center" *ngIf="getuser()!='technique' && getuser()!='business'"><button class='btn btn-outline-success btn-sm' (click)="showEditModal(user)">
+            <i class="fa fa-edit" aria-hidden="true"></i></button><button style="margin:10px;"
+            class='btn btn-outline-danger btn-sm' (click)="showDeleteModal(user)">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </button>
+        </td>
+      
+      </tbody>
+    </table>
+    <div class="panel-footer panel-default pager">
+      <pagination-controls (pageChange)="pt =$event" id="pt"></pagination-controls>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="col-2" *ngIf="getuser()!='technique' && getuser()!='business'">
+      <button type="button" style="background-color: orange"  (click)="showAddModal()" class="btn btn-block btn-primary">Ajouter</button>
+      
+    </div>
+  </div>
+  
+  
+  
+  <div bsModal #utilisateurModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dark  modal-lg" role="document">
+  <div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title">Failure</h4>
+    <button type="button" class="close" (click)="utilisateurModal.hide()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" style="padding: 52px">
+    <form class="form-horizontal">
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="text-input">exception:</label>
+        <div class="col-md-8">
+          <input class="form-control" style="font-weight: bold;color: black;" [(ngModel)]="utilisateur.exception" [ngModelOptions]="{standalone: true}"
+             />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="text-input">msisdn:</label>
+        <div class="col-md-8">
+          <input type="number" class="form-control" style="font-weight: bold;color: black;" [(ngModel)]="utilisateur.msisdn"
+          [ngModelOptions]="{standalone: true}"/>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="text-input">spin_number:</label>
+        <div class="col-md-8">
+          <input type="number" class="form-control" style="font-weight: bold;color: black;" [(ngModel)]="utilisateur.spin_number" [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="text-input">sprin_result:</label>
+        <div class="col-md-8">
+          <input class="form-control" style="font-weight: bold;color: black;" [(ngModel)] ="utilisateur.sprin_result"   [ngModelOptions]="{standalone: true}"
+            type="text" />
+        </div>
+      </div>
+     </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" style="background-color: orange"  class="btn btn-primary" (click)="utilisateurModal.hide()">Annuler</button>
+    <button type="button" style="background-color:orange"  (click)="saveUtilisateur()" class="btn btn-primary">Valider</button>
+  </div>
+  </div>
+  </div>
+  </div>
+  <div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dark  modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Suppression</h4>
+          <button type="button" class="close" (click)="deleteModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>l
+          </button>
+        </div>
+        <div class="modal-body" style="padding: 52px">
+          Êtes-vous sûr de vouloir supprimer ?
+  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" style="background-color:orange" (click)="deleteModal.hide()">Annuler</button>
+          <button type="button" style="background-color:orange" (click)="delete()" class="btn btn-danger">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <notifier-container></notifier-container>

@@ -1,0 +1,31 @@
+<div class="animated fadeIn">
+  <div class="card-columns cols-2">
+
+    <div class="card">
+      <div class="card-header">
+        <label style="font-weight:bold;color:black;">Failure_Statistique IMAGE 1</label>
+
+      </div>
+      <div class="card-body">
+        <div class="chart-wrapper">
+          <canvas baseChart class="chart" [data]="doughnutChartData" [labels]="doughnutChartLabels"
+            [chartType]="doughnutChartType" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <label style="font-weight:bold;color:black;">Failure_Statistique IMAGE 2</label>
+
+      </div>
+      <div class="card-body">
+        <div class="chart-wrapper">
+          <canvas baseChart class="chart" [data]="polarAreaChartData" [labels]="polarAreaChartLabels"
+            [legend]="polarAreaLegend" [chartType]="polarAreaChartType" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
